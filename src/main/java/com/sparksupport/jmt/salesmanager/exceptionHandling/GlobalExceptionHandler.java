@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 //import org.springframework.security.access.AccessDeniedException;
 //import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -46,27 +48,10 @@ public class GlobalExceptionHandler {
         return errorMap;
     }
 
-    /*
-     * Handles AccessDeniedException and returns a custom error response with details
-     * including timestamp, error message, requested URI, and HTTP status code 403 (FORBIDDEN).
-     */
-//    @ResponseStatus(HttpStatus.FORBIDDEN)
-//    @ExceptionHandler(AccessDeniedException.class)
-//    public ResponseEntity<?> handleAccessDeniedException(AccessDeniedException exception, WebRequest request) {
-//        ErrorDetails ed = new ErrorDetails(new Date(), exception.getMessage(), request.getDescription(false),
-//                HttpStatus.FORBIDDEN);
-//        return new ResponseEntity<Object>(ed, HttpStatus.FORBIDDEN);
-//    }
-//
-    /*
-     * Handles BadCredentialsException and returns a custom error response with details
-     * including timestamp, error message, requested URI, and HTTP status code 401 (UNAUTHORIZED).
-     */
-//    @ResponseStatus(HttpStatus.UNAUTHORIZED)
-//    @ExceptionHandler(BadCredentialsException.class)
-//    public ResponseEntity<?> handleAuthenticationException(Exception exception, WebRequest request) {
-//        ErrorDetails ed = new ErrorDetails(new Date(), exception.getMessage(), request.getDescription(false),
-//                HttpStatus.UNAUTHORIZED);
-//        return new ResponseEntity<Object>(ed, HttpStatus.UNAUTHORIZED);
-//    }
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<?> handleAccessDeniedException(AccessDeniedException exception, WebRequest request) {
+        ErrorDetails errorDetails = new ErrorDetails(new Date(), exception.getMessage(), request.getDescription(false), HttpStatus.FORBIDDEN);
+        return new ResponseEntity<>(errorDetails, HttpStatus.FORBIDDEN);
+    }
 }

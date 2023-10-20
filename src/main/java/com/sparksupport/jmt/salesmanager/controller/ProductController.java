@@ -9,6 +9,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,6 +32,8 @@ public class ProductController {
      * @param pageable Object representing pagination information.
      * @return ResponseEntity containing a page of products and HTTP status OK if successful.
      */
+    @Secured("ROLE_ADMIN")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("/list")
     public ResponseEntity<Page<Product>> getAllProducts(Pageable pageable){
         Page<Product> products = productService.getAllProducts(pageable);
@@ -42,6 +46,8 @@ public class ProductController {
      * @param id ID of the product to be retrieved.
      * @return ResponseEntity containing the product and HTTP status OK if successful.
      */
+    @Secured("ROLE_ADMIN")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable("id") Long id){
         Product product = productService.getProductById(id);
@@ -54,6 +60,8 @@ public class ProductController {
      * @param product Product object to be added.
      * @return ResponseEntity containing the added product and HTTP status CREATED if successful.
      */
+    @Secured("ROLE_ADMIN")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PostMapping("/add")
     public ResponseEntity<Product> addProduct(@RequestBody Product product){
         productService.addProduct(product);
@@ -67,6 +75,8 @@ public class ProductController {
      * @param product Updated Product object.
      * @return ResponseEntity containing the updated product and HTTP status OK if successful.
      */
+    @Secured("ROLE_ADMIN")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PutMapping("/update/{id}")
     public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product){
         productService.updateProduct(id, product);
@@ -79,6 +89,8 @@ public class ProductController {
      * @param id ID of the product to be deleted.
      * @return ResponseEntity with a success message and HTTP status OK if successful.
      */
+    @Secured("ROLE_ADMIN")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteProduct(@PathVariable Long id){
         productService.deleteProduct(id);
@@ -91,6 +103,8 @@ public class ProductController {
      * @param productId ID of the product for which revenue needs to be calculated.
      * @return ResponseEntity containing the revenue and HTTP status OK if successful.
      */
+    @Secured("ROLE_ADMIN")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("/revenue/{productId}")
     public ResponseEntity<Double> getRevenueByProduct(@PathVariable Long productId){
         double sale = productService.getRevenueByProduct(productId);
@@ -102,6 +116,8 @@ public class ProductController {
      *
      * @return ResponseEntity containing the total revenue and HTTP status OK if successful.
      */
+    @Secured("ROLE_ADMIN")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping("/totalRevenue")
     public ResponseEntity<Double> getTotalRevenue(){
         double product = productService.getTotalRevenue();
