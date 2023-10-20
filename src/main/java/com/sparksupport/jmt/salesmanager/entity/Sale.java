@@ -17,6 +17,7 @@ public class Sale {
     @NotNull(message = "Product ID cannot be null")
     @Column(name = "product_id")
     private Long productId;
+
     @Positive(message = "Value should be positive")
     private int quantity;
 

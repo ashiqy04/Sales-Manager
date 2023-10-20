@@ -24,7 +24,6 @@ public class ProductController {
     @Autowired
     private SaleService saleService;
 
-
     /**
      * Handles GET requests to retrieve a paginated list of all products.
      *

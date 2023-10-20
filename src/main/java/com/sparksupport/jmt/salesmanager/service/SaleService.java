@@ -6,13 +6,8 @@ import java.util.List;
 
 public interface SaleService {
 
-
     void addSaleDetails(Sale sale);
-
     List<Sale> getAllSales();
-
-
     void deleteSales(Long productId);
-
     void updateSales(Long id, Sale sale);
 }

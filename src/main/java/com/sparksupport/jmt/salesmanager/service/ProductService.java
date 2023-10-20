@@ -11,10 +11,6 @@ public interface ProductService {
     void addProduct(Product product);
     void updateProduct(long id, Product product);
     void deleteProduct(long id);
-
     double getTotalRevenue();
-
     double getRevenueByProduct(Long productId);
-
-
 }

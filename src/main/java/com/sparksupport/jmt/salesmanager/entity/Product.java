@@ -13,15 +13,17 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotBlank(message = "Field should not be empty")
     @Size(max = 20, message = "size must not exceed 20 letters,")
     private String name;
+
     @Size(max = 50, message = "size must not exceed 50 letters,")
     private String description;
 
-
     @Positive(message = "Value should be positive")
     private double price;
+
     @Positive(message = "Value should be positive")
     private int quantity;
 
