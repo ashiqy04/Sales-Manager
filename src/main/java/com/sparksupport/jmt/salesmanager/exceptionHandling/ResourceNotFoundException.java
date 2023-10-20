@@ -1,6 +1,5 @@
 package com.sparksupport.jmt.salesmanager.exceptionHandling;
 
-
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 

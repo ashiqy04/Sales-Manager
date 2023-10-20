@@ -1,6 +1,5 @@
 package com.sparksupport.jmt.salesmanager.controller;
 
-
 import com.sparksupport.jmt.salesmanager.entity.Sale;
 import com.sparksupport.jmt.salesmanager.service.SaleService;
 import jakarta.validation.Valid;
