@@ -3,6 +3,8 @@ package com.sparksupport.jmt.salesmanager.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
 import java.util.Date;
 
@@ -12,8 +14,10 @@ public class Sale {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull(message = "Product ID cannot be null")
     @Column(name = "product_id")
     private Long productId;
+    @Positive(message = "Value should be positive")
     private int quantity;
 
     @JsonFormat(pattern="dd/MM/yyyy")

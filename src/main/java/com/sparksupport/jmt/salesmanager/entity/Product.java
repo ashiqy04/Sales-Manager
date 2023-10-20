@@ -2,6 +2,9 @@ package com.sparksupport.jmt.salesmanager.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
 import java.util.List;
 
@@ -10,9 +13,16 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message = "Field should not be empty")
+    @Size(max = 20, message = "size must not exceed 20 letters,")
     private String name;
+    @Size(max = 50, message = "size must not exceed 50 letters,")
     private String description;
+
+
+    @Positive(message = "Value should be positive")
     private double price;
+    @Positive(message = "Value should be positive")
     private int quantity;
 
     @OneToMany(mappedBy = "product")

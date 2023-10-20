@@ -1,9 +1,9 @@
 package com.sparksupport.jmt.salesmanager.controller;
 
 import com.sparksupport.jmt.salesmanager.entity.Product;
-import com.sparksupport.jmt.salesmanager.entity.Sale;
 import com.sparksupport.jmt.salesmanager.service.ProductService;
 import com.sparksupport.jmt.salesmanager.service.SaleService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,7 +13,6 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/product")
@@ -63,7 +62,7 @@ public class ProductController {
     @Secured("ROLE_ADMIN")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PostMapping("/add")
-    public ResponseEntity<Product> addProduct(@RequestBody Product product){
+    public ResponseEntity<Product> addProduct(@Valid @RequestBody Product product){
         productService.addProduct(product);
         return new ResponseEntity<>(product, HttpStatus.CREATED);
     }
@@ -78,7 +77,7 @@ public class ProductController {
     @Secured("ROLE_ADMIN")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @PutMapping("/update/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product){
+    public ResponseEntity<Product> updateProduct(@Valid @PathVariable Long id, @RequestBody Product product){
         productService.updateProduct(id, product);
         return new ResponseEntity<>(product, HttpStatus.OK);
     }
